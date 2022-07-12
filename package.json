@@ -1,0 +1,17 @@
+{
+  "name": "f-up-counter-bot",
+  "version": "1.0.0",
+  "description": "A bot to count days since the last F-up",
+  "main": "src/main.ts",
+  "author": "Fangyi Zhou <me@fangyi.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.8.2"
+  }
+}
