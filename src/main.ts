@@ -1,5 +1,9 @@
 import { Context, APIGatewayProxyResult, APIGatewayEvent } from "aws-lambda";
-import { APIInteraction, InteractionType } from "discord-api-types/v10";
+import {
+    APIInteraction,
+    InteractionResponseType,
+    InteractionType,
+} from "discord-api-types/v10";
 import nacl from "tweetnacl";
 import "process";
 
@@ -42,14 +46,39 @@ export const lambdaHandler = async (
         return {
             statusCode: 200,
             body: JSON.stringify({
-                type: InteractionType.Ping,
+                type: InteractionResponseType.Pong,
             }),
         };
+    } else if (body.type === InteractionType.ApplicationCommand) {
+        const { name } = body.data;
+        if (name === "days") {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({
+                    type: InteractionResponseType.ChannelMessageWithSource,
+                    data: {
+                        content: "It has been X days since the last incident.",
+                    },
+                }),
+            };
+        } else if (name === "reset") {
+            return {
+                statusCode: 200,
+                body: JSON.stringify({
+                    type: InteractionResponseType.ChannelMessageWithSource,
+                    data: {
+                        content:
+                            "Okay. It's now 0 days since the last incident.",
+                    },
+                }),
+            };
+        }
     }
+
     return {
-        statusCode: 200,
+        statusCode: 500,
         body: JSON.stringify({
-            message: "hello world",
+            message: "Don't know what to do",
         }),
     };
 };
