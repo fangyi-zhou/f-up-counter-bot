@@ -6,7 +6,7 @@
   "author": "Fangyi Zhou <me@fangyi.io>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc && esbuild out/main.js --bundle --minify --target=es2020 --platform=node --outfile=dist/main.js",
+    "build": "tsc && esbuild out/main.js --bundle --minify --sourcemap --target=es2020 --platform=node --outfile=dist/main.js",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "dependencies": {
