@@ -153,7 +153,9 @@ export const lambdaHandler = async (
                     const last_fup = moment.unix(parseInt(last_time));
                     const now = moment();
                     now.startOf("day");
-                    const days = moment.duration(now.diff(last_fup)).asDays();
+                    const days = Math.round(
+                        moment.duration(now.diff(last_fup)).asDays()
+                    );
                     response = `It has been ${days.toString()} day(s) since the last incident. The last incident was ${last_content}`;
                 }
             } catch {}
