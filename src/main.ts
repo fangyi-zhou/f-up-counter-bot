@@ -184,7 +184,9 @@ export const lambdaHandler = async (
             await respond(id, token, {
                 type: InteractionResponseType.ChannelMessageWithSource,
                 data: {
-                    content: "Okay. It's now 0 days since the last incident.",
+                    content: `Okay. It's now 0 days since the last incident${
+                        reason ? " because " + reason : ""
+                    }.`,
                 },
             });
             console.log("Done. Everything was okay.");
